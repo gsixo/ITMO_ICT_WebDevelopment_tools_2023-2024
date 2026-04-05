@@ -1,0 +1,7 @@
+approach,elapsed_seconds,details
+async,0.009560,"workers=4, total=500000500000"
+multiprocessing,0.016718,"workers=4, total=500000500000"
+threading,0.013383,"workers=4, total=500000500000"
+threading,0.013826,"workers=4, total=500000500000"
+multiprocessing,0.017005,"workers=4, total=500000500000"
+async,0.009819,"workers=4, total=500000500000"

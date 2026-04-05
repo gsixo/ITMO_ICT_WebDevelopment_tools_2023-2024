@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.routers import accounts, budgets, categories, goals, notifications, persons, transactions
+from app.routers import accounts, budgets, categories, goals, notifications, parser, persons, transactions
 
 app = FastAPI(title="Finance API")
 
@@ -11,6 +11,7 @@ app.include_router(transactions.router, prefix="/transactions", tags=["transacti
 app.include_router(budgets.router, prefix="/budgets", tags=["budgets"])
 app.include_router(goals.router, prefix="/goals", tags=["goals"])
 app.include_router(notifications.router, prefix="/notifications", tags=["notifications"])
+app.include_router(parser.router, prefix="/parser", tags=["parser"])
 
 
 @app.get("/health", tags=["health"])

@@ -1,0 +1,4 @@
+approach,elapsed_seconds,details
+async,25.066819,"workers=4, urls=8"
+multiprocessing,9.415052,"workers=4, urls=8"
+threading,14.876166,"workers=4, urls=8"
