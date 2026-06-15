@@ -152,6 +152,11 @@ psql "postgresql://postgres:postgres@localhost:5432/finance_db" \
 | `/notifications` | Notifications |
 | `/parser`        | Parser proxy  |
 
-Async parser queue endpoints:
-- `POST /parser/parse-async` - enqueue parsing task
-- `GET /parser/tasks/{task_id}` - read Celery task status/result
+## MkDocs documentation
+
+```bash
+pip install -r requirements-docs.txt
+mkdocs serve -a 127.0.0.1:8002
+```
+
+GitHub Pages: [lab1](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab1/) · [lab2](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab2/) · [lab3](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab3/) — Settings → Pages → branch `gh-pages`.

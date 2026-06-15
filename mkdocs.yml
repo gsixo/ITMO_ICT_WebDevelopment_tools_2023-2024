@@ -1,0 +1,63 @@
+site_name: Lab 3 — Docker, Parser, Celery
+site_description: Документация лабораторной работы 3 — Docker, парсер и очередь задач
+site_author: ITMO ICT WebDevelopment
+site_url: https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab3/
+
+repo_name: ITMO_ICT_WebDevelopment_tools_2023-2024
+repo_url: https://github.com/gsixo/ITMO_ICT_WebDevelopment_tools_2023-2024
+
+theme:
+  name: material
+  language: ru
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Тёмная тема
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Светлая тема
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+
+nav:
+  - Главная: index.md
+  - Быстрый старт: getting-started.md
+  - Архитектура: architecture.md
+  - Парсинг: parser-architecture.md
+  - API: api.md
+  - Docker: docker.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/gsixo/ITMO_ICT_WebDevelopment_tools_2023-2024
