@@ -52,14 +52,16 @@ mkdocs build
 
 ### GitHub Pages
 
-После push в `lab1`/`lab2`/`lab3`/`main` workflow `.github/workflows/docs.yml` собирает и публикует сайт.
+Каждая ветка (`lab1`, `lab2`, `lab3`) публикуется **отдельной версией** через [mike](https://github.com/jimporter/mike):
 
-1. GitHub → **Settings** → **Pages** → Source: **GitHub Actions**
-2. Дождаться зелёного workflow **Deploy MkDocs to GitHub Pages**
-3. Сайт: [https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/)
+| Ветка | URL |
+|-------|-----|
+| lab1 | […/lab1/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab1/) |
+| lab2 | […/lab2/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab2/) |
+| lab3 | […/lab3/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab3/) |
 
-Ручной деплой (альтернатива):
+Переключение версий — в выпадающем меню на сайте.
 
-```bash
-mkdocs gh-deploy
-```
+**Настройка (один раз):** Settings → Pages → Source → **Deploy from branch** → `gh-pages` → `/ (root)`.
+
+После push в `lab1` и `lab2` обе документации будут доступны одновременно.

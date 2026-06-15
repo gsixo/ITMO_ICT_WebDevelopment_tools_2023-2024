@@ -13,8 +13,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: finance_db
-    # Host port omitted: local PostgreSQL often uses 5432.
-    # For DBeaver/psql from host, uncomment: "5433:5432"
+    ports:
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
