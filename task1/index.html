@@ -6,17 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Документация лабораторной работы 1 — серверное приложение FastAPI">
+        <meta name="description" content="Документация лабораторной работы 2 — потоки, процессы и асинхронность в Python">
       
       
         <meta name="author" content="ITMO ICT WebDevelopment">
       
       
-        <link rel="canonical" href="https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/docker/">
+        <link rel="canonical" href="https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/task1/">
       
       
-        <link rel="prev" href="../database/">
+        <link rel="prev" href="../getting-started/">
       
+      
+        <link rel="next" href="../task2/">
       
       
         
@@ -27,7 +29,7 @@
     
     
       
-        <title>Docker - Finance API</title>
+        <title>Задача 1 — сумма - Lab 2 — Threading, Multiprocessing, Async</title>
       
     
     
@@ -69,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker" class="md-skip">
+        <a href="#1" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -94,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href=".." title="Finance API" class="md-header__button md-logo" aria-label="Finance API" data-md-component="logo">
+    <a href=".." title="Lab 2 — Threading, Multiprocessing, Async" class="md-header__button md-logo" aria-label="Lab 2 — Threading, Multiprocessing, Async" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +110,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Finance API
+            Lab 2 — Threading, Multiprocessing, Async
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docker
+              Задача 1 — сумма
             
           </span>
         </div>
@@ -127,7 +129,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Тёмная тема" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -137,7 +139,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Светлая тема" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -232,13 +234,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Finance API" class="md-nav__button md-logo" aria-label="Finance API" data-md-component="logo">
+    <a href=".." title="Lab 2 — Threading, Multiprocessing, Async" class="md-nav__button md-logo" aria-label="Lab 2 — Threading, Multiprocessing, Async" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Finance API
+    Lab 2 — Threading, Multiprocessing, Async
   </label>
   
     <div class="md-nav__source">
@@ -313,87 +315,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Архитектура
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../database/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    База данных
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -413,7 +334,7 @@
   <span class="md-ellipsis">
     
   
-    Docker
+    Задача 1 — сумма
   
 
     
@@ -431,7 +352,7 @@
   <span class="md-ellipsis">
     
   
-    Docker
+    Задача 1 — сумма
   
 
     
@@ -460,7 +381,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Сервисы
+        Постановка
       
     </span>
   </a>
@@ -471,10 +392,49 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Быстрый запуск
+        Реализации
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Реализации">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threading-task1_threadingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threading — task1_threading.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiprocessing-task1_multiprocessingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiprocessing — task1_multiprocessing.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-task1_asyncpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async — task1_async.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -482,18 +442,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Переменные окружения
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Локальный запуск + Docker БД
+        Запуск
       
     </span>
   </a>
@@ -504,29 +453,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Полезные команды
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dockerfile" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dockerfile
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ci" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Сборка документации в CI
+        Выводы
       
     </span>
   </a>
@@ -537,6 +464,87 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Задача 2 — парсинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Результаты бенчмарков
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Структура проекта
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -571,7 +579,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Сервисы
+        Постановка
       
     </span>
   </a>
@@ -582,10 +590,49 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Быстрый запуск
+        Реализации
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Реализации">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threading-task1_threadingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threading — task1_threading.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiprocessing-task1_multiprocessingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiprocessing — task1_multiprocessing.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-task1_asyncpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async — task1_async.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -593,18 +640,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Переменные окружения
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Локальный запуск + Docker БД
+        Запуск
       
     </span>
   </a>
@@ -615,29 +651,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Полезные команды
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dockerfile" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dockerfile
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ci" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Сборка документации в CI
+        Выводы
       
     </span>
   </a>
@@ -664,120 +678,116 @@
   
 
 
-<h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
-<p>Проект можно запустить целиком через <strong>Docker Compose</strong>: API, PostgreSQL, Redis, parser-сервис и Celery worker.</p>
-<h2 id="_1">Сервисы<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-    subgraph compose["Docker Compose"]
-        API["api :8000"]
-        Parser["parser :8001"]
-        Worker["celery_worker"]
-        DB[("db\nPostgreSQL")]
-        Redis[("redis")]
-    end
-
-    API --&gt; DB
-    API --&gt; Parser
-    API --&gt; Redis
-    Worker --&gt; DB
-    Worker --&gt; Redis</code></pre>
+<h1 id="1">Задача 1 — подсчёт суммы<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
+<p>Подсчитать сумму чисел от <strong>1</strong> до <strong>1 000 000</strong>, разбив диапазон на <strong>4</strong> части и выполнив их параллельно.</p>
+<h2 id="_1">Постановка<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Сервис</th>
-<th>Порт (host)</th>
-<th>Назначение</th>
+<th>Параметр</th>
+<th>Значение</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>api</code></td>
-<td>8000</td>
-<td>FastAPI приложение</td>
+<td>Диапазон</td>
+<td>1 … 1 000 000</td>
 </tr>
 <tr>
-<td><code>parser</code></td>
-<td>8001</td>
-<td>HTTP-сервис парсера</td>
+<td>Workers</td>
+<td>4</td>
 </tr>
 <tr>
-<td><code>db</code></td>
-<td>—</td>
-<td>PostgreSQL (внутренняя сеть)</td>
-</tr>
-<tr>
-<td><code>redis</code></td>
-<td>—</td>
-<td>Брокер Celery</td>
-</tr>
-<tr>
-<td><code>celery_worker</code></td>
-<td>—</td>
-<td>Фоновые задачи</td>
+<td>Ожидаемый результат</td>
+<td>500 000 500 000</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_2">Быстрый запуск<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build
-</code></pre></div>
-<p>После старта:</p>
+<p>Функция <code>calculate_sum(start, end)</code> считает <code>sum(range(start, end + 1))</code>.</p>
+<h2 id="_2">Реализации<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="threading-task1_threadingpy">Threading — <code>task1_threading.py</code><a class="headerlink" href="#threading-task1_threadingpy" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TB
+    Main["Главный поток"] --&gt; T1["Thread 1"]
+    Main --&gt; T2["Thread 2"]
+    Main --&gt; T3["Thread 3"]
+    Main --&gt; T4["Thread 4"]
+    T1 --&gt; R["results[]"]
+    T2 --&gt; R
+    T3 --&gt; R
+    T4 --&gt; R
+    R --&gt; Sum["sum(results)"]</code></pre>
 <ul>
-<li>API: <a href="http://localhost:8000/docs">http://localhost:8000/docs</a></li>
-<li>Parser: <a href="http://localhost:8001/docs">http://localhost:8001/docs</a></li>
+<li>Модуль <code>threading</code>, по одному потоку на диапазон</li>
+<li>Общий список <code>results</code> в памяти процесса</li>
+<li><code>thread.join()</code> — ожидание завершения</li>
 </ul>
-<p>Сервис <code>api</code> автоматически выполняет <code>alembic upgrade head</code> перед запуском Uvicorn.</p>
-<h2 id="_3">Переменные окружения<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>В <code>docker-compose.yml</code> заданы через YAML-якорь <code>x-app-environment</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/finance_db
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>DATABASE_URL_SYNC=postgresql+psycopg2://postgres:postgres@db:5432/finance_db
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>PARSER_SERVICE_URL=http://parser:8001
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>CELERY_BROKER_URL=redis://redis:6379/0
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>CELERY_RESULT_BACKEND=redis://redis:6379/1
+<h3 id="multiprocessing-task1_multiprocessingpy">Multiprocessing — <code>task1_multiprocessing.py</code><a class="headerlink" href="#multiprocessing-task1_multiprocessingpy" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TB
+    Main["Главный процесс"] --&gt; Pool["Pool(4)"]
+    Pool --&gt; P1["Процесс 1"]
+    Pool --&gt; P2["Процесс 2"]
+    Pool --&gt; P3["Процесс 3"]
+    Pool --&gt; P4["Процесс 4"]
+    P1 --&gt; Map["pool.map()"]
+    P2 --&gt; Map
+    P3 --&gt; Map
+    P4 --&gt; Map
+    Map --&gt; Sum["sum(partial_sums)"]</code></pre>
+<ul>
+<li><code>multiprocessing.Pool</code> с <code>pool.map</code></li>
+<li>Каждый процесс — отдельная память, обход GIL для CPU-задач</li>
+</ul>
+<h3 id="async-task1_asyncpy">Async — <code>task1_async.py</code><a class="headerlink" href="#async-task1_asyncpy" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TB
+    Main["asyncio.run()"] --&gt; G["asyncio.gather()"]
+    G --&gt; C1["coroutine 1"]
+    G --&gt; C2["coroutine 2"]
+    G --&gt; C3["coroutine 3"]
+    G --&gt; C4["coroutine 4"]
+    C1 --&gt; Sleep["await asyncio.sleep(0)"]
+    C2 --&gt; Sleep
+    C3 --&gt; Sleep
+    C4 --&gt; Sleep
+    Sleep --&gt; Calc["calculate_sum()"]</code></pre>
+<ul>
+<li><code>async def</code> + <code>asyncio.gather</code></li>
+<li><code>await asyncio.sleep(0)</code> — точка уступки event loop</li>
+<li><strong>Не ускоряет CPU-bound</strong>: <code>calculate_sum</code> блокирует event loop</li>
+</ul>
+<h2 id="_3">Запуск<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>task1_threading.py
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>task1_multiprocessing.py
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python<span class="w"> </span>task1_async.py
 </code></pre></div>
-<p>Внутри Docker-сети сервисы обращаются друг к другу по именам: <code>db</code>, <code>parser</code>, <code>redis</code>.</p>
-<h2 id="docker_1">Локальный запуск + Docker БД<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h2>
-<p>Если API запускается на хосте, а PostgreSQL — в Docker, раскомментируйте в <code>docker-compose.yml</code> проброс порта:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">db</span><span class="p">:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5433:5432&quot;</span>
-</code></pre></div>
-<p>И укажите в <code>.env</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5433/finance_db
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>DATABASE_URL_SYNC=postgresql+psycopg2://postgres:postgres@localhost:5433/finance_db
-</code></pre></div>
-<h2 id="_4">Полезные команды<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Запуск в фоне</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Только БД и Redis</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>db<span class="w"> </span>redis
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Логи</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>api
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Остановка</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># Остановка с удалением тома БД</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
-</code></pre></div>
-<h2 id="dockerfile">Dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">&para;</a></h2>
-<p>Корневой <code>Dockerfile</code> собирает образ API и Celery worker:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span><span class="p">]</span>
-</code></pre></div>
-<p>Parser-сервис собирается из <code>parser/Dockerfile</code>.</p>
-<h2 id="ci">Сборка документации в CI<a class="headerlink" href="#ci" title="Permanent link">&para;</a></h2>
-<p>Статический сайт MkDocs можно собрать в Docker или локально:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-docs.txt
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>mkdocs<span class="w"> </span>build
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># результат в site/</span>
-</code></pre></div>
-<p>Папка <code>site/</code> добавлена в <code>.gitignore</code>.</p>
+<p>Время записывается в <code>results/task1_times.csv</code>.</p>
+<h2 id="_4">Выводы<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Подход</th>
+<th>CPU-bound задача</th>
+<th>Почему</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>threading</strong></td>
+<td>Слабое ускорение</td>
+<td>GIL — только один поток выполняет Python-байткод</td>
+</tr>
+<tr>
+<td><strong>multiprocessing</strong></td>
+<td>Лучшее ускорение</td>
+<td>Отдельные процессы, каждый со своим GIL</td>
+</tr>
+<tr>
+<td><strong>async</strong></td>
+<td>Почти без ускорения</td>
+<td>Кооперативность не помогает при чистых вычислениях</td>
+</tr>
+</tbody>
+</table>
+<p>Для <strong>I/O-bound</strong> задач (задача 2) картина меняется — см. <a href="../task2/">Задача 2</a>.</p>
 
 
 

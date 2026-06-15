@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Документация лабораторной работы 1 — серверное приложение FastAPI">
+        <meta name="description" content="Документация лабораторной работы 2 — потоки, процессы и асинхронность в Python">
       
       
         <meta name="author" content="ITMO ICT WebDevelopment">
       
       
-        <link rel="canonical" href="https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/database/">
+        <link rel="canonical" href="https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/task2/">
       
       
-        <link rel="prev" href="../api/">
+        <link rel="prev" href="../task1/">
       
       
-        <link rel="next" href="../docker/">
+        <link rel="next" href="../results/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>База данных - Finance API</title>
+        <title>Задача 2 — парсинг - Lab 2 — Threading, Multiprocessing, Async</title>
       
     
     
@@ -71,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#2" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href=".." title="Finance API" class="md-header__button md-logo" aria-label="Finance API" data-md-component="logo">
+    <a href=".." title="Lab 2 — Threading, Multiprocessing, Async" class="md-header__button md-logo" aria-label="Lab 2 — Threading, Multiprocessing, Async" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,13 +110,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Finance API
+            Lab 2 — Threading, Multiprocessing, Async
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              База данных
+              Задача 2 — парсинг
             
           </span>
         </div>
@@ -129,7 +129,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Тёмная тема" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -139,7 +139,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Светлая тема" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -234,13 +234,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Finance API" class="md-nav__button md-logo" aria-label="Finance API" data-md-component="logo">
+    <a href=".." title="Lab 2 — Threading, Multiprocessing, Async" class="md-nav__button md-logo" aria-label="Lab 2 — Threading, Multiprocessing, Async" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Finance API
+    Lab 2 — Threading, Multiprocessing, Async
   </label>
   
     <div class="md-nav__source">
@@ -318,41 +318,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
+      <a href="../task1/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Архитектура
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API
+    Задача 1 — сумма
   
 
     
@@ -388,7 +361,7 @@
   <span class="md-ellipsis">
     
   
-    База данных
+    Задача 2 — парсинг
   
 
     
@@ -406,7 +379,7 @@
   <span class="md-ellipsis">
     
   
-    База данных
+    Задача 2 — парсинг
   
 
     
@@ -432,10 +405,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#er-" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ER-диаграмма
+        Постановка
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL для парсинга
       
     </span>
   </a>
@@ -446,19 +430,30 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Таблицы
+        Архитектура
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Таблицы">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Реализации
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Реализации">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#persons" class="md-nav__link">
+  <a href="#threading-task2_threadingpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        persons
+        Threading — task2_threading.py
       
     </span>
   </a>
@@ -466,10 +461,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#accounts" class="md-nav__link">
+  <a href="#multiprocessing-task2_multiprocessingpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        accounts
+        Multiprocessing — task2_multiprocessing.py
       
     </span>
   </a>
@@ -477,54 +472,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#categories" class="md-nav__link">
+  <a href="#async-task2_asyncpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        categories
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#transactions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        transactions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#budgets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        budgets
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#goals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        goals
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#notifications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        notifications
+        Async — task2_async.py
       
     </span>
   </a>
@@ -537,10 +488,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Миграции
+        Схема БД
       
     </span>
   </a>
@@ -548,10 +499,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Подключение
+        Запуск
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Выводы
       
     </span>
   </a>
@@ -573,14 +535,41 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/" class="md-nav__link">
+      <a href="../results/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Docker
+    Результаты бенчмарков
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Структура проекта
   
 
     
@@ -620,10 +609,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#er-" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ER-диаграмма
+        Постановка
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL для парсинга
       
     </span>
   </a>
@@ -634,19 +634,30 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Таблицы
+        Архитектура
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Таблицы">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Реализации
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Реализации">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#persons" class="md-nav__link">
+  <a href="#threading-task2_threadingpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        persons
+        Threading — task2_threading.py
       
     </span>
   </a>
@@ -654,10 +665,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#accounts" class="md-nav__link">
+  <a href="#multiprocessing-task2_multiprocessingpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        accounts
+        Multiprocessing — task2_multiprocessing.py
       
     </span>
   </a>
@@ -665,54 +676,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#categories" class="md-nav__link">
+  <a href="#async-task2_asyncpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        categories
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#transactions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        transactions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#budgets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        budgets
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#goals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        goals
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#notifications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        notifications
+        Async — task2_async.py
       
     </span>
   </a>
@@ -725,10 +692,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Миграции
+        Схема БД
       
     </span>
   </a>
@@ -736,10 +703,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Подключение
+        Запуск
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Выводы
       
     </span>
   </a>
@@ -766,381 +744,171 @@
   
 
 
-<h1 id="_1">База данных<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>Приложение использует <strong>PostgreSQL</strong>. Схема описана SQLAlchemy-моделями в <code>app/models/</code> и управляется через <strong>Alembic</strong>.</p>
-<h2 id="er-">ER-диаграмма<a class="headerlink" href="#er-" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>erDiagram
-    persons ||--o{ accounts : has
-    persons ||--o{ budgets : has
-    persons ||--o{ goals : has
-    persons ||--o{ notifications : has
-    accounts ||--o{ transactions : has
-    categories ||--o{ transactions : has
-    categories ||--o{ budgets : has
-
-    persons {
-        int id PK
-        string name
-        string email UK
-        datetime created_at
-        datetime updated_at
-    }
-
-    accounts {
-        int id PK
-        int person_id FK
-        string name
-        decimal balance
-        string currency
-        datetime created_at
-    }
-
-    categories {
-        int id PK
-        string name
-        enum type
-        datetime created_at
-    }
-
-    transactions {
-        int id PK
-        int account_id FK
-        int category_id FK
-        string store
-        decimal amount
-        enum type
-        date transaction_date
-        text description
-        datetime created_at
-    }
-
-    budgets {
-        int id PK
-        int person_id FK
-        int category_id FK
-        decimal amount_limit
-        date period_start
-        date period_end
-        datetime created_at
-    }
-
-    goals {
-        int id PK
-        int person_id FK
-        string name
-        decimal target_amount
-        decimal current_amount
-        date deadline
-        datetime created_at
-    }
-
-    notifications {
-        int id PK
-        int person_id FK
-        string title
-        text message
-        bool is_read
-        datetime created_at
-    }</code></pre>
-<h2 id="_2">Таблицы<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="persons"><code>persons</code><a class="headerlink" href="#persons" title="Permanent link">&para;</a></h3>
-<p>Пользователь системы — владелец счетов и финансовых данных.</p>
+<h1 id="2">Задача 2 — параллельный парсинг<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<p>Параллельно загрузить несколько веб-страниц, извлечь <code>&lt;title&gt;</code> и сохранить в PostgreSQL.</p>
+<h2 id="_1">Постановка<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>8 URL из <code>common.py</code></li>
+<li>4 worker'а — URL делятся через <code>split_evenly()</code></li>
+<li>Функция <code>parse_and_save(url)</code> — GET → BeautifulSoup → INSERT в <code>parsed_pages</code></li>
+<li>Поле <code>approach</code> — <code>threading</code>, <code>multiprocessing</code> или <code>async</code></li>
+</ul>
+<h2 id="url">URL для парсинга<a class="headerlink" href="#url" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Поле</th>
-<th>Тип</th>
-<th>Описание</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>INTEGER</td>
-<td>Первичный ключ</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>VARCHAR(255)</td>
-<td>Имя</td>
-</tr>
-<tr>
-<td><code>email</code></td>
-<td>VARCHAR(255)</td>
-<td>Email (уникальный)</td>
-</tr>
-<tr>
-<td><code>created_at</code></td>
-<td>TIMESTAMP</td>
-<td>Дата создания</td>
-</tr>
-<tr>
-<td><code>updated_at</code></td>
-<td>TIMESTAMP</td>
-<td>Дата обновления</td>
-</tr>
-</tbody>
-</table>
-<h3 id="accounts"><code>accounts</code><a class="headerlink" href="#accounts" title="Permanent link">&para;</a></h3>
-<p>Финансовый счёт пользователя.</p>
-<table>
-<thead>
-<tr>
-<th>Поле</th>
-<th>Тип</th>
-<th>Описание</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>INTEGER</td>
-<td>Первичный ключ</td>
-</tr>
-<tr>
-<td><code>person_id</code></td>
-<td>INTEGER</td>
-<td>FK → <code>persons.id</code></td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>VARCHAR(255)</td>
-<td>Название счёта</td>
-</tr>
-<tr>
-<td><code>balance</code></td>
-<td>NUMERIC(15,2)</td>
-<td>Текущий баланс</td>
-</tr>
-<tr>
-<td><code>currency</code></td>
-<td>VARCHAR(3)</td>
-<td>Валюта (RUB, USD, …)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="categories"><code>categories</code><a class="headerlink" href="#categories" title="Permanent link">&para;</a></h3>
-<p>Категории доходов и расходов.</p>
-<table>
-<thead>
-<tr>
-<th>Поле</th>
-<th>Тип</th>
-<th>Описание</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>INTEGER</td>
-<td>Первичный ключ</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>VARCHAR(255)</td>
-<td>Название</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td>ENUM</td>
-<td><code>income</code> или <code>expense</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="transactions"><code>transactions</code><a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h3>
-<p>Финансовая операция по счёту.</p>
-<table>
-<thead>
-<tr>
-<th>Поле</th>
-<th>Тип</th>
-<th>Описание</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>INTEGER</td>
-<td>Первичный ключ</td>
-</tr>
-<tr>
-<td><code>account_id</code></td>
-<td>INTEGER</td>
-<td>FK → <code>accounts.id</code></td>
-</tr>
-<tr>
-<td><code>category_id</code></td>
-<td>INTEGER</td>
-<td>FK → <code>categories.id</code></td>
-</tr>
-<tr>
-<td><code>store</code></td>
-<td>VARCHAR(255)</td>
-<td>Магазин / источник</td>
-</tr>
-<tr>
-<td><code>amount</code></td>
-<td>NUMERIC(15,2)</td>
-<td>Сумма</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td>ENUM</td>
-<td><code>income</code> или <code>expense</code></td>
-</tr>
-<tr>
-<td><code>transaction_date</code></td>
-<td>DATE</td>
-<td>Дата операции</td>
-</tr>
-<tr>
-<td><code>description</code></td>
-<td>TEXT</td>
-<td>Комментарий</td>
-</tr>
-</tbody>
-</table>
-<h3 id="budgets"><code>budgets</code><a class="headerlink" href="#budgets" title="Permanent link">&para;</a></h3>
-<p>Бюджет — лимит расходов по категории за период.</p>
-<table>
-<thead>
-<tr>
-<th>Поле</th>
-<th>Тип</th>
-<th>Описание</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>person_id</code></td>
-<td>INTEGER</td>
-<td>FK → <code>persons.id</code></td>
-</tr>
-<tr>
-<td><code>category_id</code></td>
-<td>INTEGER</td>
-<td>FK → <code>categories.id</code></td>
-</tr>
-<tr>
-<td><code>amount_limit</code></td>
-<td>NUMERIC(15,2)</td>
-<td>Лимит</td>
-</tr>
-<tr>
-<td><code>period_start</code></td>
-<td>DATE</td>
-<td>Начало периода</td>
-</tr>
-<tr>
-<td><code>period_end</code></td>
-<td>DATE</td>
-<td>Конец периода</td>
-</tr>
-</tbody>
-</table>
-<h3 id="goals"><code>goals</code><a class="headerlink" href="#goals" title="Permanent link">&para;</a></h3>
-<p>Финансовая цель накопления.</p>
-<table>
-<thead>
-<tr>
-<th>Поле</th>
-<th>Тип</th>
-<th>Описание</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>person_id</code></td>
-<td>INTEGER</td>
-<td>FK → <code>persons.id</code></td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>VARCHAR(255)</td>
-<td>Название цели</td>
-</tr>
-<tr>
-<td><code>target_amount</code></td>
-<td>NUMERIC(15,2)</td>
-<td>Целевая сумма</td>
-</tr>
-<tr>
-<td><code>current_amount</code></td>
-<td>NUMERIC(15,2)</td>
-<td>Накоплено</td>
-</tr>
-<tr>
-<td><code>deadline</code></td>
-<td>DATE</td>
-<td>Срок</td>
-</tr>
-</tbody>
-</table>
-<h3 id="notifications"><code>notifications</code><a class="headerlink" href="#notifications" title="Permanent link">&para;</a></h3>
-<p>Уведомления пользователю.</p>
-<table>
-<thead>
-<tr>
-<th>Поле</th>
-<th>Тип</th>
-<th>Описание</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>person_id</code></td>
-<td>INTEGER</td>
-<td>FK → <code>persons.id</code></td>
-</tr>
-<tr>
-<td><code>title</code></td>
-<td>VARCHAR(255)</td>
-<td>Заголовок</td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td>TEXT</td>
-<td>Текст</td>
-</tr>
-<tr>
-<td><code>is_read</code></td>
-<td>BOOLEAN</td>
-<td>Прочитано</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_3">Миграции<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Исходные SQL-скрипты: <code>script/migrations/</code>.</p>
-<p>Alembic-миграции: <code>alembic/versions/</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Применить все миграции</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Откатить последнюю</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>alembic<span class="w"> </span>downgrade<span class="w"> </span>-1
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Создать новую миграцию после изменения моделей</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>alembic<span class="w"> </span>revision<span class="w"> </span>--autogenerate<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add field&quot;</span>
-</code></pre></div>
-<h2 id="_4">Подключение<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Режим</th>
+<th>#</th>
 <th>URL</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Async (приложение)</td>
-<td><code>postgresql+asyncpg://user:pass@host:5432/finance_db</code></td>
+<td>1</td>
+<td>https://example.com</td>
 </tr>
 <tr>
-<td>Sync (Alembic)</td>
-<td><code>postgresql+psycopg2://user:pass@host:5432/finance_db</code></td>
+<td>2</td>
+<td>https://www.python.org</td>
+</tr>
+<tr>
+<td>3</td>
+<td>https://docs.python.org/3/</td>
+</tr>
+<tr>
+<td>4</td>
+<td>https://httpbin.org/html</td>
+</tr>
+<tr>
+<td>5</td>
+<td>https://www.wikipedia.org</td>
+</tr>
+<tr>
+<td>6</td>
+<td>https://pypi.org</td>
+</tr>
+<tr>
+<td>7</td>
+<td>https://github.com</td>
+</tr>
+<tr>
+<td>8</td>
+<td>https://fastapi.tiangolo.com</td>
 </tr>
 </tbody>
 </table>
-<p>Переменные задаются в <code>.env</code>: <code>DATABASE_URL</code>, <code>DATABASE_URL_SYNC</code>.</p>
+<h2 id="_2">Архитектура<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Workers["4 worker'а"]
+        W1["chunk 1"]
+        W2["chunk 2"]
+        W3["chunk 3"]
+        W4["chunk 4"]
+    end
+
+    URLs["URLS (8 шт.)"] --&gt; Split["split_evenly()"]
+    Split --&gt; W1 &amp; W2 &amp; W3 &amp; W4
+
+    W1 --&gt; GET["HTTP GET"]
+    W2 --&gt; GET
+    W3 --&gt; GET
+    W4 --&gt; GET
+
+    GET --&gt; BS["BeautifulSoup"]
+    BS --&gt; DB[("parsed_pages")]</code></pre>
+<h2 id="_3">Реализации<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="threading-task2_threadingpy">Threading — <code>task2_threading.py</code><a class="headerlink" href="#threading-task2_threadingpy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>requests.get()</code> — синхронный HTTP</li>
+<li>4 потока, каждый обрабатывает свой chunk URL</li>
+<li><code>save_parsed_page_sync()</code> — sync SQLAlchemy</li>
+</ul>
+<p><strong>Плюс для I/O:</strong> пока один поток ждёт сеть, другие работают (GIL отпускается на I/O).</p>
+<h3 id="multiprocessing-task2_multiprocessingpy">Multiprocessing — <code>task2_multiprocessing.py</code><a class="headerlink" href="#multiprocessing-task2_multiprocessingpy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>multiprocessing.Process</code> — отдельный процесс на chunk</li>
+<li>Каждый процесс делает свои HTTP-запросы и пишет в БД</li>
+<li>Больше накладных расходов на создание процессов</li>
+</ul>
+<h3 id="async-task2_asyncpy">Async — <code>task2_async.py</code><a class="headerlink" href="#async-task2_asyncpy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>aiohttp.ClientSession</code> — неблокирующий HTTP</li>
+<li><code>asyncio.gather()</code> — параллельные корутины</li>
+<li><code>save_parsed_page_async()</code> — async SQLAlchemy</li>
+</ul>
+<p><strong>Плюс для I/O:</strong> один поток, много одновременных сетевых запросов без блокировки.</p>
+<h2 id="_4">Схема БД<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>Таблица <code>parsed_pages</code> (<code>models.py</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Тип</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>INTEGER</td>
+<td>PK</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>VARCHAR(2048)</td>
+<td>Адрес страницы</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>VARCHAR(1024)</td>
+<td>Заголовок</td>
+</tr>
+<tr>
+<td><code>approach</code></td>
+<td>VARCHAR(32)</td>
+<td>threading / multiprocessing / async</td>
+</tr>
+<tr>
+<td><code>fetched_at</code></td>
+<td>TIMESTAMP</td>
+<td>Время парсинга</td>
+</tr>
+</tbody>
+</table>
+<p>Уникальный ключ: <code>(url, approach)</code>.</p>
+<h2 id="_5">Запуск<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>task2_threading.py
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>task2_multiprocessing.py
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python<span class="w"> </span>task2_async.py
+</code></pre></div>
+<p>Результаты → <code>results/task2_times.csv</code>.</p>
+<h2 id="_6">Выводы<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Подход</th>
+<th>I/O-bound задача</th>
+<th>Почему</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>threading</strong></td>
+<td>Хорошо</td>
+<td>Потоки ждут сеть параллельно</td>
+</tr>
+<tr>
+<td><strong>multiprocessing</strong></td>
+<td>Хорошо, но тяжелее</td>
+<td>Процессы + накладные расходы</td>
+</tr>
+<tr>
+<td><strong>async</strong></td>
+<td>Лучший для сети</td>
+<td>Много соединений в одном потоке</td>
+</tr>
+</tbody>
+</table>
+<p>Для CPU-bound (задача 1) multiprocessing выигрывает; для сетевого I/O — async и threading.</p>
 
 
 

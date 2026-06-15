@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Документация лабораторной работы 1 — серверное приложение FastAPI">
+        <meta name="description" content="Документация лабораторной работы 2 — потоки, процессы и асинхронность в Python">
       
       
         <meta name="author" content="ITMO ICT WebDevelopment">
@@ -18,7 +18,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../architecture/">
+        <link rel="next" href="../task1/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Быстрый старт - Finance API</title>
+        <title>Быстрый старт - Lab 2 — Threading, Multiprocessing, Async</title>
       
     
     
@@ -71,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href=".." title="Finance API" class="md-header__button md-logo" aria-label="Finance API" data-md-component="logo">
+    <a href=".." title="Lab 2 — Threading, Multiprocessing, Async" class="md-header__button md-logo" aria-label="Lab 2 — Threading, Multiprocessing, Async" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Finance API
+            Lab 2 — Threading, Multiprocessing, Async
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -129,7 +129,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Тёмная тема" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -139,7 +139,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Светлая тема" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -234,13 +234,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Finance API" class="md-nav__button md-logo" aria-label="Finance API" data-md-component="logo">
+    <a href=".." title="Lab 2 — Threading, Multiprocessing, Async" class="md-nav__button md-logo" aria-label="Lab 2 — Threading, Multiprocessing, Async" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Finance API
+    Lab 2 — Threading, Multiprocessing, Async
   </label>
   
     <div class="md-nav__source">
@@ -362,10 +362,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Клонирование репозитория
+        Установка
       
     </span>
   </a>
@@ -376,7 +376,85 @@
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Виртуальное окружение
+        База данных (задача 2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="База данных (задача 2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-postgresql-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вариант A: PostgreSQL в Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вариант B: локальный PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запуск программ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Запуск программ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 1 — без БД
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 2 — с БД
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Просмотр результатов в БД
       
     </span>
   </a>
@@ -384,65 +462,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#mkdocs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Переменные окружения
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Создание базы данных
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Миграции
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Запуск приложения
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-mkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. Документация MkDocs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Пример запроса
+        Документация MkDocs
       
     </span>
   </a>
@@ -464,6 +487,87 @@
   
   
     <li class="md-nav__item">
+      <a href="../task1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Задача 1 — сумма
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Задача 2 — парсинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Результаты бенчмарков
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../architecture/" class="md-nav__link">
         
   
@@ -471,88 +575,7 @@
   <span class="md-ellipsis">
     
   
-    Архитектура
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../database/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    База данных
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../docker/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Docker
+    Структура проекта
   
 
     
@@ -603,10 +626,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Клонирование репозитория
+        Установка
       
     </span>
   </a>
@@ -617,7 +640,85 @@
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Виртуальное окружение
+        База данных (задача 2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="База данных (задача 2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-postgresql-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вариант A: PostgreSQL в Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вариант B: локальный PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запуск программ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Запуск программ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 1 — без БД
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 2 — с БД
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Просмотр результатов в БД
       
     </span>
   </a>
@@ -625,65 +726,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#mkdocs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Переменные окружения
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Создание базы данных
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Миграции
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Запуск приложения
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-mkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. Документация MkDocs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Пример запроса
+        Документация MkDocs
       
     </span>
   </a>
@@ -714,77 +760,50 @@
 <h2 id="_2">Требования<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Python 3.11+</li>
-<li>PostgreSQL 14+ (локально или в Docker)</li>
+<li>PostgreSQL (для задачи 2)</li>
 </ul>
-<h2 id="1">1. Клонирование репозитория<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>&lt;repo-url&gt;
+<h2 id="_3">Установка<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gsixo/ITMO_ICT_WebDevelopment_tools_2023-2024
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>ITMO_ICT_WebDevelopment_tools_2023-2024
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>checkout<span class="w"> </span>lab1
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>checkout<span class="w"> </span>lab2
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </code></pre></div>
-<h2 id="2">2. Виртуальное окружение<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">        </span><span class="c1"># Windows: venv\Scripts\activate</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<h2 id="2">База данных (задача 2)<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
 </code></pre></div>
-<h2 id="3">3. Переменные окружения<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+<h3 id="a-postgresql-docker">Вариант A: PostgreSQL в Docker<a class="headerlink" href="#a-postgresql-docker" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>db
 </code></pre></div>
-<p>Для локального запуска без Docker раскомментируйте в <code>.env</code> строки с <code>localhost</code>:</p>
+<p>В <code>.env</code> оставьте Docker-имена (<code>@db:5432</code>) — <code>db.py</code> автоматически перепишет их в <code>@localhost:5433</code> при запуске на хосте.</p>
+<h3 id="b-postgresql">Вариант B: локальный PostgreSQL<a class="headerlink" href="#b-postgresql" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/finance_db
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>DATABASE_URL_SYNC=postgresql+psycopg2://user:password@localhost:5432/finance_db
 </code></pre></div>
-<p>Замените <code>user</code>, <code>password</code> и имя базы на свои значения.</p>
-<h2 id="4">4. Создание базы данных<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;CREATE DATABASE finance_db;&quot;</span>
+<p>Таблица <code>parsed_pages</code> создаётся автоматически при первом запуске задачи 2.</p>
+<h2 id="_4">Запуск программ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="1">Задача 1 — без БД<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>task1_threading.py
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python<span class="w"> </span>task1_multiprocessing.py
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>python<span class="w"> </span>task1_async.py
 </code></pre></div>
-<h2 id="5">5. Миграции<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+<p>Ожидаемая сумма: <code>500000500000</code>.</p>
+<h3 id="2_1">Задача 2 — с БД<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>task2_threading.py
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>python<span class="w"> </span>task2_multiprocessing.py
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>python<span class="w"> </span>task2_async.py
 </code></pre></div>
-<p>При изменении моделей:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>alembic<span class="w"> </span>revision<span class="w"> </span>--autogenerate<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;описание изменений&quot;</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+<h2 id="_5">Просмотр результатов в БД<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>psql<span class="w"> </span><span class="s2">&quot;postgresql://postgres:postgres@localhost:5433/finance_db&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="s2">&quot;SELECT id, approach, url, title, fetched_at FROM parsed_pages ORDER BY fetched_at DESC LIMIT 20;&quot;</span>
 </code></pre></div>
-<h2 id="6">6. Запуск приложения<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uvicorn<span class="w"> </span>app:app<span class="w"> </span>--reload
+<h2 id="mkdocs">Документация MkDocs<a class="headerlink" href="#mkdocs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-docs.txt
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mkdocs<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">127</span>.0.0.1:8002
 </code></pre></div>
-<table>
-<thead>
-<tr>
-<th>URL</th>
-<th>Назначение</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://localhost:8000">http://localhost:8000</a></td>
-<td>API</td>
-</tr>
-<tr>
-<td><a href="http://localhost:8000/docs">http://localhost:8000/docs</a></td>
-<td>Swagger UI</td>
-</tr>
-<tr>
-<td><a href="http://localhost:8000/redoc">http://localhost:8000/redoc</a></td>
-<td>ReDoc</td>
-</tr>
-<tr>
-<td><a href="http://localhost:8000/health">http://localhost:8000/health</a></td>
-<td>Health-check</td>
-</tr>
-</tbody>
-</table>
-<h2 id="7-mkdocs">7. Документация MkDocs<a class="headerlink" href="#7-mkdocs" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-docs.txt
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>mkdocs<span class="w"> </span>serve
-</code></pre></div>
-<p>Сайт документации откроется на <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> — если порт занят API, укажите другой:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mkdocs<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">127</span>.0.0.1:8002
-</code></pre></div>
-<h2 id="_3">Пример запроса<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://localhost:8000/persons/&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;: &quot;Иван&quot;, &quot;email&quot;: &quot;ivan@example.com&quot;}&#39;</span>
-</code></pre></div>
+<p>Сборка статики: <code>mkdocs build</code> → папка <code>site/</code>.</p>
 
 
 
