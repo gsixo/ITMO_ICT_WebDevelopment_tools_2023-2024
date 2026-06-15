@@ -3,5 +3,10 @@
     "version": "lab2",
     "title": "lab2",
     "aliases": []
+  },
+  {
+    "version": "lab1",
+    "title": "lab1",
+    "aliases": []
   }
 ]
