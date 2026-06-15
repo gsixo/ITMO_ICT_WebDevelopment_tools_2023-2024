@@ -52,4 +52,4 @@ pip install -r requirements-docs.txt
 mkdocs serve -a 127.0.0.1:8002
 ```
 
-GitHub Pages: [https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/) (после push и настройки **Settings → Pages → GitHub Actions**).
+GitHub Pages: [lab1](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab1/) · [lab2](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab2/) (Settings → Pages → branch `gh-pages`).

@@ -80,8 +80,16 @@ mkdocs serve -a 127.0.0.1:8002
 
 ### GitHub Pages
 
-После push в `lab2` workflow публикует сайт автоматически:
+Каждая ветка (`lab1`, `lab2`, `lab3`) публикуется **отдельной версией** через [mike](https://github.com/jimporter/mike) и не перезаписывает другие:
 
-[https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/)
+| Ветка | URL |
+|-------|-----|
+| lab1 | […/lab1/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab1/) |
+| lab2 | […/lab2/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab2/) |
+| lab3 | […/lab3/](https://gsixo.github.io/ITMO_ICT_WebDevelopment_tools_2023-2024/lab3/) |
 
-Настройка: **Settings → Pages → Source: GitHub Actions**.
+Переключение версий — в выпадающем меню на сайте (правый верхний угол).
+
+**Настройка репозитория (один раз):** Settings → Pages → Source → **Deploy from branch** → branch `gh-pages` → `/ (root)`.
+
+После push в `lab1` и `lab2` перезапустите workflow на обеих ветках (или сделайте пустой push), чтобы восстановить обе документации.
